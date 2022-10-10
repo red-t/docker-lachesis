@@ -33,5 +33,12 @@ RUN wget https://github.com/samtools/samtools/archive/0.1.19.tar.gz \
   && sed -i -E 's/bam\///' src/include/gtools/SAMStepper.* \
   && make -j \
   && make install \
-  && rm -rf /tmp/lachesis.tar.gz /ax_lib_samtools.patch /samtools-0.1.19
+  && rm -rf /tmp/lachesis.tar.gz /ax_lib_samtools.patch /samtools-0.1.19 \
+  && ulimit -s unlimited
+
+
+ENV LC_ALL=C.UTF-8 \
+    LANGUAGE=C.UTF-8 \
+    LANG=C.UTF-8
+
 CMD ["Lachesis"]
